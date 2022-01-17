@@ -1,5 +1,6 @@
 const express = require("express");
-const path = require("path")
+const path = require("path");
+const { report } = require("process");
 const app = express();
 
 app.use(express.json())
@@ -49,6 +50,23 @@ app.post('/products', (req, res) => {
     }
     products.push(newProduct)
     res.json(products)
+})
+
+app.put('/products/:id', (req, res) => {
+    const found = products.some(product => product.id === +req.params.id)
+
+    if (found) {
+        products.forEach(product => {
+            if (product.id === +req.params.id) {
+                product.nombre = req.body.nombre ? req.body.nombre : product.nombre,
+                product.precio = req.body.precio ? req.body.precio : product.precio
+                
+                res.json(product)
+            }
+        })
+    } else {
+        res.status(404).json({msg:`Miembro con el id ${req.params.id} no se encuentra`})
+    }
 })
 
 app.listen(3000, () => {
