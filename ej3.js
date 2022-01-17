@@ -69,6 +69,16 @@ app.put('/products/:id', (req, res) => {
     }
 })
 
+app.delete('/products/:id', (req, res) => {
+    const found = products.some(product => product.id === +req.params.id)
+
+    if (found) {
+        res.json(products.filter(product => product.id !== +req.params.id))
+    } else {
+        res.status(404).json({msg:`Miembro con el id ${req.params.id} no se encuentra`})
+    }
+})
+
 app.listen(3000, () => {
     console.log("el servidor está en el puerto 3000")
 })
