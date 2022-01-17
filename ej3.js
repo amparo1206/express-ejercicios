@@ -38,9 +38,9 @@ const products = [
     }
 ]
 
-app.get('/products', (req, res) => {
+/* app.get('/products', (req, res) => {
     res.json(products)
-})
+}) */
 
 app.post('/products', (req, res) => {
     const newProduct = {
@@ -77,6 +77,21 @@ app.delete('/products/:id', (req, res) => {
     } else {
         res.status(404).json({msg:`Miembro con el id ${req.params.id} no se encuentra`})
     }
+})
+
+/* app.get('/products/:precio'), (req, res) => {
+    console.log(req.params.precio)
+    const found = products.some(product => product.precio === +req.params.precio)
+
+    if (found) {
+        res.json(products.filter(product => product.precio === +req.params.precio))
+    } else {
+        res.status(404).json({msg:`Mienbro con el id ${req.params.precio} no se encuentra`})
+    }
+} */
+
+app.get('/products/:precio', (req, res) => {
+    res.json(products.precio.filter(product=>product.precio > 50 && product.precio < 250))
 })
 
 app.listen(3000, () => {
