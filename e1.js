@@ -4,8 +4,8 @@ app.use(express.json())
 
 /* app.listen(4050, () => {
     console.log("el servidor está en el puerto 4050")
-})
-app.listen(4050, (err) => {
+}) */
+/* app.listen(4050, (err) => {
     if (err) {
         console.log(`Servidor levantado en el puerto ${puerto}`)
     } else {
