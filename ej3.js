@@ -38,9 +38,9 @@ const products = [
     }
 ]
 
-/* app.get('/products', (req, res) => {
+app.get('/products', (req, res) => {
     res.json(products)
-}) */
+})
 
 app.post('/products', (req, res) => {
     const newProduct = {
@@ -88,11 +88,24 @@ app.delete('/products/:id', (req, res) => {
     } else {
         res.status(404).json({msg:`Mienbro con el id ${req.params.precio} no se encuentra`})
     }
-} */
+}
 
 app.get('/products/:precio', (req, res) => {
     res.json(products.precio.filter(product=>product.precio > 50 && product.precio < 250))
 })
+ */
+app.get('/products/:id'), (req, res) => {
+    console.log(req.params.id)
+    const found = products.some(product => product.id === +req.params.id)
+
+    if (found) {
+        res.json(products.filter(product => product.id === +req.params.id))
+    } else {
+        res.status(404).json({msg:`Mienbro con el id ${req.params.id} no se encuentra`})
+    }
+}
+
+
 
 app.listen(3000, () => {
     console.log("el servidor está en el puerto 3000")
