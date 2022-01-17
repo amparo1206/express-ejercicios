@@ -37,7 +37,19 @@ const products = [
     }
 ]
 
+app.get('/products', (req, res) => {
+    res.json(products)
+})
 
+app.post('/products', (req, res) => {
+    const newProduct = {
+        id: products.length + 1,
+        nombre: req.body.nombre,
+        precio: req.body.precio,
+    }
+    products.push(newProduct)
+    res.json(products)
+})
 
 app.listen(3000, () => {
     console.log("el servidor está en el puerto 3000")
