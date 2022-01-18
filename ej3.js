@@ -79,7 +79,7 @@ app.delete('/products/:id', (req, res) => {
     }
 })
 
-/* app.get('/products/:precio'), (req, res) => {
+app.get('/products/:precio'), (req, res) => {
     console.log(req.params.precio)
     const found = products.some(product => product.precio === +req.params.precio)
 
@@ -93,9 +93,9 @@ app.delete('/products/:id', (req, res) => {
 app.get('/products/:precio', (req, res) => {
     res.json(products.precio.filter(product=>product.precio > 50 && product.precio < 250))
 })
- */
 
-/* app.get('/products/:id'), (req, res) => {
+
+app.get('/products/:id'), (req, res) => {
     console.log(req.params.id)
     const found = products.some(product => product.id === +req.params.id)
 
@@ -104,7 +104,7 @@ app.get('/products/:precio', (req, res) => {
     } else {
         res.status(404).json({msg:`Mienbro con el id ${req.params.id} no se encuentra`})
     }
-} */
+}
 
 app.get('/products/:nombre', (req, res) => {
     const found = products.some(product => product.nombre === req.params.nombre)
