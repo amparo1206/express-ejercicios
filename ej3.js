@@ -106,16 +106,14 @@ app.get('/products/:precio', (req, res) => {
     }
 } */
 
-app.get('/products/:nombre'), (req, res) => {
-    console.log(req.params.nombre)
-    const found = products.some(product => product.nombre === +req.params.nombre)
-
+app.get('/products/:nombre', (req, res) => {
+    const found = products.some(product => product.nombre === req.params.nombre)
     if (found) {
-        res.json(products.filter(product => product.nombre === +req.params.nombre))
+        res.json(products.filter(product => product.nombre === req.params.nombre))
     } else {
         res.status(404).json({msg:`Mienbro con el id ${req.params.nombre} no se encuentra`})
     }
-}
+})
 
 
 app.listen(3000, () => {
